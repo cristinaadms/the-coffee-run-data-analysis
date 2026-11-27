@@ -1,0 +1,54 @@
+THE COFFEE RUN — NOTAS DO PROJETO
+=================================
+
+ETAPA 1 — SOBRE OS DADOS
+------------------------
+Fonte: Coffee Shop Sales — Maven Analytics (Data Playground)
+Dados fictícios de uma rede de cafeterias chamada Maven Roasters.
+
+- 149.116 transações (linhas) e 11 colunas
+- Período: 01/01/2023 a 30/06/2023 (6 meses)
+- Datas no formato americano (mês/dia/ano)
+- 3 lojas em Nova York: Astoria, Hell's Kitchen e Lower Manhattan
+- 9 categorias de produto
+- Hierarquia dos produtos: categoria > tipo > produto (product_detail)
+
+Observações:
+- Percebi que não existe uma coluna de faturamento, então vou
+  precisar criar uma:
+  faturamento = transaction_qty x unit_price
+- "Hell's Kitchen" tem apóstrofo, o que pode quebrar minhas
+  consultas SQL. Preciso lembrar de tratar isso.
+- Depois de importar no SQL, vou conferir se continuo com
+  149.116 linhas e 11 colunas, pra garantir que nada se perdeu.
+
+
+ETAPA 2 — PERGUNTAS DE NEGÓCIO
+------------------------------
+A maioria das minhas perguntas depende do faturamento, que vou
+calcular assim:
+  faturamento = transaction_qty x unit_price
+
+1. Qual é o faturamento total?
+   -> soma do faturamento de todas as transações
+2. Quais são os horários de pico?
+   -> número de transações (e faturamento) por hora
+3. Quais são os produtos mais vendidos?
+   -> quantidade total vendida e faturamento total por produto
+4. Qual é o ticket médio?
+   -> faturamento médio por transação
+5. Qual loja tem o melhor desempenho?
+   -> faturamento total por loja
+6. Quantas vendas foram feitas em cada mês?
+   -> número de transações por mês, depois identificar o maior
+      e o menor
+7. As vendas cresceram ao longo dos 6 meses?
+   -> faturamento total por mês
+
+IDEIAS PARA "PRÓXIMOS PASSOS"
+-----------------------------
+- Com dados reais, cruzar as vendas com dados de clima/temperatura
+  pra entender como o clima afeta o consumo.
+- Com base no mês com menos vendas, pensar em estratégias de
+  marketing (promoções, bebidas sazonais, programa de fidelidade)
+  pra aumentar o faturamento nos períodos mais fracos.
